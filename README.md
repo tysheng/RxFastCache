@@ -64,4 +64,4 @@ dependencies {
    RxFastCache.putBitmap(TAG, bitmap)
                 .subscribeOn(Schedulers.io())
                 .subscribe();
-```# RxFastCache
+```

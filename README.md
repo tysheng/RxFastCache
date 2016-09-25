@@ -1,7 +1,9 @@
+Android cache library powered by RxJava and FastJson
+
 RxFastCache 是一个结合 RxJava 与 FastJson 的本地缓存库
 
 ========
-# 添加到你的项目
+# Add to your project
 
 [![](https://jitpack.io/v/tysheng/RxFastCache.svg)](https://jitpack.io/#tysheng/RxFastCache)
 
@@ -17,7 +19,7 @@ dependencies {
     compile 'com.github.tysheng:RxFastCache:1.0.0'
 }
 ```
-###初始化
+###Init
 ```java
  public class App extends Application {
     @Override
@@ -27,7 +29,7 @@ dependencies {
     }
 }
 ```
-#使用
+#Usage
 
 ###Bean
 

@@ -1,19 +1,21 @@
 package me.tysheng.rxfastcachedemo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import me.tysheng.rxfastcache.RxFastCache;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends Activity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -33,16 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RxFastCache.put(TAG, person)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Boolean>() {
+                .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void call(Boolean aBoolean) {
-                        String msg;
-                        if (aBoolean) {
-                            msg = "success";
-                        } else {
-                            msg = "error";
-                        }
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT)
+                    public void accept(@NonNull Boolean aBoolean) throws Exception {
+                        Toast.makeText(getApplicationContext(),
+                                aBoolean?"success":"error",
+                                Toast.LENGTH_SHORT)
                                 .show();
                     }
                 });
@@ -52,12 +50,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RxFastCache.get(TAG, Person.class)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Person>() {
+                .subscribe(new Consumer<Person>() {
                     @Override
-                    public void call(Person person) {
+                    public void accept(@NonNull Person person) throws Exception {
                         if (person != null)
+                        {
                             Toast.makeText(getApplicationContext(), person.toString(), Toast.LENGTH_SHORT)
                                     .show();
+                        }
                     }
                 });
 

@@ -8,15 +8,12 @@ import java.util.List;
  * Email: tyshengsx@gmail.com
  */
 
-public class Person {
-    public String name;
-    public int age;
-    public List<String> languages;
+class Person {
+    private String name;
+    private int age;
+    private List<String> languages;
 
-    public Person() {
-    }
-
-    public Person(String name, int age, List<String> languages) {
+    Person(String name, int age, List<String> languages) {
         this.name = name;
         this.age = age;
         this.languages = languages;
